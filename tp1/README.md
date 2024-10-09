@@ -54,6 +54,7 @@ point d'entrée du noyau.
 
 **Q4 : Que constate-t-on ? Que dire de la ségrégation mémoire mise en place
   par défaut par GRUB avec une telle configuration ?**
+flat pour toutes les datas, le code est séparé
 
 
 ## Une première reconfiguration de la GDT : en mode "flat"
