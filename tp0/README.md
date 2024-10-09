@@ -49,6 +49,7 @@ provient la valeur de point d'entrée à `0x302010` au lieu de `0x300000`.**
 
 Note : il est possible de s'aider également de la page wiki sur les options de [linkage](https://github.com/agantet/secos-ng/wiki/Tooling#options-de-linkage).
 
+dans entry, align 16 pour aligner a 0x10, puis space de 0x2000 ==> le kernelstart est decaler de 0x2010
 
 ## Cartographie mémoire au démarrage
 
