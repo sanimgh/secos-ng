@@ -107,3 +107,5 @@ Le comportement observé semble-t-il cohérent ?
 **Q4 : Compléter la fonction `tp()` de [tp.c](./tp.c) pour essayer de lire ou
   écrire à une adresse en dehors de la mémoire physique disponible (128 MB).
   Que se passe-t-il ? Comment pourrait-on l'expliquer ?**
+
+  ça fonctionne car le controlleur mémoire fait un modulo => 0x1 + 128 MB = 0x1

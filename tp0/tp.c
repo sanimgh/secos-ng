@@ -53,7 +53,7 @@ void tp() {
    debug("after: 0x%x\n", *ptr_in_reserved_mem);                // check
 
    int *ptr_after_physical_mem;
-   ptr_after_physical_mem = (int*)0xffffffffffffffff;
+   ptr_after_physical_mem = (int*)0xffffffff;
    debug("Ptr after physcial mem (at: %p):  before: 0x%x ",ptr_after_physical_mem, *ptr_after_physical_mem); // read
    *ptr_after_physical_mem = 0xaaaaaaaa;                           // write
    debug("after: 0x%x\n", *ptr_after_physical_mem);                // check
