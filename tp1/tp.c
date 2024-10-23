@@ -1,6 +1,7 @@
 /* GPLv2 (c) Airbus */
 #include <debug.h>
 #include <segmem.h>
+#include <string.h>
 
 void userland() {
    asm volatile ("mov %eax, %cr0");
@@ -90,6 +91,26 @@ void tp() {
     set_gdtr(gdtr);
 	get_gdtr(gdt);
     print_gdt_content(gdt);
+
+    char src[64];
+    char * dst= 0;
+    memset(src,0xff,64);
+    _memcpy8(dst,src,32);
+
+    segment_descriptor[3].limit_1 = 0xffff;   //:16;     /* bits 00-15 of the segment limit */
+    segment_descriptor[3].base_1 = 0x600000; //avant 0x0000    //:16;     /* bits 00-15 of the base address */
+    segment_descriptor[3].base_2 = 0x00;      //:8;      /* bits 16-23 of the base address */
+    segment_descriptor[3].type = 3; //data,RW //:4;      /* segment type */
+    segment_descriptor[3].s = 1;              //:1;      /* descriptor type */
+    segment_descriptor[3].dpl = 0; //ring0    //:2;      /* descriptor privilege level */
+    segment_descriptor[3].p = 1;              //:1;      /* segment present flag */
+    segment_descriptor[3].limit_2 = 0xf;      //:4;      /* bits 16-19 of the segment limit */
+    segment_descriptor[3].avl = 1;            //:1;      /* available for fun and profit */
+    segment_descriptor[3].l = 0; // 32 bits   //:1;      /* longmode */
+    segment_descriptor[3].d = 1;              //:1;      /* default length, depend on seg type */
+    segment_descriptor[3].g = 1;              //:1;      /* granularity */
+    segment_descriptor[3].base_3 = 0x00;      //:8;      /* bits 24-31 of the base address */
+
 
 
 
