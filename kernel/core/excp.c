@@ -59,6 +59,7 @@ void __regparm__(1) excp_hdlr(int_ctx_t *ctx)
    }
 
    debug("cr0 = %p\n", (void*)get_cr0());
+   debug("cr3 = %p\n", (void*)get_cr3());
    debug("cr4 = %p\n", (void*)get_cr4());
    stack_trace(ctx->gpr.ebp.raw);
    panic("fatal exception !\n");

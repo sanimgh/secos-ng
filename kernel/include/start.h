@@ -5,7 +5,7 @@
 #include <types.h>
 #include <mbi.h>
 
-extern void tp();
+extern void config();
 
 void __attribute__((regparm(1))) start(mbi_t*);
 

@@ -24,7 +24,7 @@ void __attribute__((regparm(1))) start(mbi_t *mbi)
    intr_init();
    debug("\n" RELEASE " (c) Airbus\n");
 
-   tp();
+   config();
 
    panic("halted !");
 }

@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.pl": "prolog",
+        "debug.h": "c",
+        "segmem.h": "c",
+        "intr.h": "c",
+        "pagemem.h": "c",
+        "string.h": "c",
+        "functional": "c",
+        "start.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

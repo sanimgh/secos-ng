@@ -1,0 +1,105 @@
+hit <ctl+a> <h> <enter>, for Qemu help
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+06FCAF30+06F0AF30 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from Floppy...
+GRUB Loading stage2............[01;01H[2J
+    GNU GRUB  version 0.94  (639K lower / 129920K upper memory)[04;02H┌─────────────────────────────────────────────────────────────────────────┐[05;02H│[05;76H│[06;02H│[06;76H│[07;02H│[07;76H│[08;02H│[08;76H│[09;02H│[09;76H│[10;02H│[10;76H│[11;02H│[11;76H│[12;02H│[12;76H│[13;02H│[13;76H│[14;02H│[14;76H│[15;02H│[15;76H│[16;02H│[16;76H│[17;02H└─────────────────────────────────────────────────────────────────────────┘
+      Use the ↑ and ↓ keys to select which entry is highlighted.
+ [19;02H     Press enter to boot the selected OS, 'e' to edit the
+      commands before booting, or 'c' for a command-line.[05;78H [05;03H[0;30;47m SecOS                                                                   [06;03H[0m                                                                         [07;03H                                                                         [08;03H                                                                         [09;03H                                                                         [10;03H                                                                         [11;03H                                                                         [12;03H                                                                         [13;03H                                                                         [14;03H                                                                         [15;03H                                                                         [16;03H                                                                         [16;78H [01;01H[2J  Booting 'SecOS'
+
+root   (hd0,0)
+ Filesystem type is fat, partition type 0x6
+kernel /kernel.elf
+   [Multiboot-elf, <0x300000:0xc:0x0>, <0x300010:0x503ff0:0x0>, <0x302010:0x501
+ff8:0x0>, shtab=0x805370, entry=0x303010
+secos-07005c3-d137c7b (c) Airbus
+identity mapping from 0x0 to 0x400000 
+task 1 mapping from 0x400000 to 0x7ff000 
+task 2 mapping from 0x800000 to 0xbff000 
+pagination enabled
+
+IDT event
+ . int    #4210691
+ . error  0x1b
+ . cs:eip 0x403ff8:0x212
+ . ss:esp 0x90e58955:0x0
+ . eflags 0x23
+
+- GPR
+eax     : 0x404000
+ecx     : 0x404000
+edx     : 0x352000
+ebx     : 0x2be40
+esp     : 0x403fe8
+ebp     : 0x403ff8
+esi     : 0x2bfda
+edi     : 0x2bfdb
+ebp: 0x403fc0
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+06FCAF30+06F0AF30 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from Floppy...
+GRUB Loading stage2............[01;01H[2J
+    GNU GRUB  version 0.94  (639K lower / 129920K upper memory)[04;02H┌─────────────────────────────────────────────────────────────────────────┐[05;02H│[05;76H│[06;02H│[06;76H│[07;02H│[07;76H│[08;02H│[08;76H│[09;02H│[09;76H│[10;02H│[10;76H│[11;02H│[11;76H│[12;02H│[12;76H│[13;02H│[13;76H│[14;02H│[14;76H│[15;02H│[15;76H│[16;02H│[16;76H│[17;02H└─────────────────────────────────────────────────────────────────────────┘
+      Use the ↑ and ↓ keys to select which entry is highlighted.
+      Press enter to boot the selected OS, 'e' to edit the
+      commands before booti[20;27H[20;28Hng, or 'c' for a command-line.[05;78H [05;03H[0;30;47m SecOS                                                                   [06;03H[0m                                                                         [07;03H                                                                         [08;03H                                                                         [09;03H                                                                         [10;03H                                                                         [11;03H                                                                         [12;03H                                                                         [13;03H                                                                         [14;03H                                                                         [15;03H                                                                         [16;03H                                                                         [16;78H [01;01H[2J  Booting 'SecOS'
+
+root   (hd0,0)
+ Filesystem type is fat, partition type 0x6
+kernel /kernel.elf
+   [Multiboot-elf, <0x300000:0xc:0x0>, <0x300010:0x503ff0:0x0>, <0x302010:0x501
+ff8:0x0>, shtab=0x805370, en[07;28H[07;29Htry=0x303010
+secos-07005c3-d137c7b (c) Airbus
+identity mapping from 0x0 to 0x400000 
+task 1 mapping from 0x400000 to 0x7ff000 
+task 2 mapping from 0x800000 to 0xbff000 
+pagination enabled
+
+IDT event
+ . int    #4210691
+ . error  0x1b
+ . cs:eip 0x403ff8:0x212
+ . ss:esp 0x90e58955:0x0
+ . eflags 0x23
+
+- GPR
+eax     : 0x404000
+ecx     : 0x404000
+edx     : 0x352000
+ebx     : 0x2be40
+esp     : 0x403fe8
+ebp     : 0x403ff8
+esi     : 0x2bfda
+edi     : 0x2bfdb
+ebp: 0x403fc0
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+06FCAF30+06F0AF30 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from Floppy...
+GRUB Loading stage2............[01;01H[2J
+    GNU GRUB  version 0.94  (639K lower / 129920K upper memory)[04;02H┌─────────────────────────────────────────────────────────────────────────┐[05;02H│[05;76H│[06;02H│[06;76H│[07;02H│[07;76H│[08;02H│[08;76H│[09;02H│[09;76H│[10;02H│[10;76H│[11;02H│[11;76H│[12;02H│[12;76H│[13;02H│[13;76H│[14;02H│[14;76H│[15;02H│[15;76H│[16;02H│[16;76H│[17;02H└─────────────────────────────────────────────────────────────────────────┘
+      Use the ↑ and ↓ keys to select which entry is highlighted.
+      Press enter to boot the selected OS, 'e' to edit the
+      commands before booting, or 'c' for a command-line.[05;78H [05;03H[0;30;47m SecOS                                                                   [06;03H[0m                                                                         [07;03H                                                                         [08;03H                                                                         [09;03H                                                                         [10;03H                                                                         [11;03H                                                                         [12;03H                                                                         [13;03H                                                                         [14;03H                                                                         [15;03H                                                                         [16;03H                                                                         [16;78H [01;01H[2J  Booting 'SecOS'
+
+root   (hd0,0)
+ Filesystem type is fat, partition type 0x6
+kernel /kernel.elf
+   [Multiboot-elf, <0x300000:0xc:0x0>, <0x300010:0x503ff0:0x0>, <0x302010:0x501
+ff8:0x0>QEMU: Terminated
+

@@ -41,6 +41,7 @@ typedef union segment_selector
 #define gdt_krn_seg_sel(idx)        gdt_seg_sel(idx,SEG_SEL_KRN)
 #define gdt_usr_seg_sel(idx)        gdt_seg_sel(idx,SEG_SEL_USR)
 
+
 /*
 ** Segment Descriptor
 */
@@ -244,5 +245,30 @@ typedef struct task_state_segment
    asm volatile ("ljmp  %0, %1"::"i"(_cs), "i"(_eip))
 #define set_cs(_cs)               \
    asm volatile ("ljmp  %0, $1f ; 1:"::"i"(_cs))
+
+
+#define gdt_flat_dsc(_dSc_,_pVl_,_tYp_)                                 \
+   ({                                                                   \
+      (_dSc_)->raw     = 0;                                             \
+      (_dSc_)->limit_1 = 0xffff;                                        \
+      (_dSc_)->limit_2 = 0xf;                                           \
+      (_dSc_)->type    = _tYp_;                                         \
+      (_dSc_)->dpl     = _pVl_;                                         \
+      (_dSc_)->d       = 1;                                             \
+      (_dSc_)->g       = 1;                                             \
+      (_dSc_)->s       = 1;                                             \
+      (_dSc_)->p       = 1;                                             \
+   })
+
+#define create_tss_dsc(_dSc_,_tSs_)                                            \
+   ({                                                                   \
+      raw32_t addr    = {.raw = _tSs_};                                 \
+      (_dSc_)->raw    = sizeof(tss_t);                                  \
+      (_dSc_)->base_1 = addr.wlow;                                      \
+      (_dSc_)->base_2 = addr._whigh.blow;                               \
+      (_dSc_)->base_3 = addr._whigh.bhigh;                              \
+      (_dSc_)->type   = SEG_DESC_SYS_TSS_AVL_32;                        \
+      (_dSc_)->p      = 1;                                              \
+   })
 
 #endif
