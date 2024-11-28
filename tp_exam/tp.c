@@ -251,7 +251,7 @@ void config_pgds()
 
 
 
-	pg_set_entry(&pgd_task_1_ptb_2[0], PG_USR|PG_RW, 0xe00000* >> 12);
+	pg_set_entry(&pgd_task_1_ptb_2[0], PG_USR|PG_RW, 0xe00000 >> 12);
 	pg_set_entry(&pgd_task_2_ptb_2[0], PG_USR|PG_RW, 0xe00000 >> 12);
 
 	pg_set_entry(&pgd[0], PG_KRN|PG_RW, page_get_nr(pgd_ptb));
