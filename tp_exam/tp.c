@@ -32,8 +32,6 @@ tss_t      TSS;
 #define d3_dsc(_d) gdt_flat_dsc(_d,3,SEG_DESC_DATA_RW)
 
 
-
-
 /* PAGINATION */
 
 pde32_t *pgd = (pde32_t*)0x350000;
@@ -51,7 +49,7 @@ pte32_t *pgd_task_2_ptb_2 = (pte32_t*)0x359000;
 
 
 /* TASKS */
-int current_task_idx = 0;
+uint32_t current_task_idx = -1;
 
 struct task {
     void *function;
@@ -75,7 +73,6 @@ uint32_t  task2_stack_base = (uint32_t)&task2_stack[STACK_SIZE-1];
 #define INTERRUPT_STACK_TASK_1 0x380000
 #define INTERRUPT_STACK_TASK_2 0x390000
 
-/* by default functions are mapped in kernel space */
 __attribute__((section(".task1_code")))
 void task1_function()
 {
@@ -144,7 +141,7 @@ void clock_interrupt_isr() {
 
 void __regparm__(1) clock_interrupt_handler(int_ctx_t *ctx) {
 
-	int next_task = (current_task_idx + 1) % 2;
+	uint32_t next_task = (current_task_idx + 1) % 2;
 	if(next_task==1)
 	{
 		debug("Printing Counter... \n");
@@ -154,8 +151,12 @@ void __regparm__(1) clock_interrupt_handler(int_ctx_t *ctx) {
 		debug("Increasing Counter... \n");
 	}
 
-	memcpy(&tasks[current_task_idx].context,ctx,sizeof(int_ctx_t));
-	tasks[current_task_idx].context_saved=1;
+	//if we come from kernel we dont save ctx
+	if((int)current_task_idx!=-1)
+	{
+		memcpy(&tasks[current_task_idx].context,ctx,sizeof(int_ctx_t));
+		tasks[current_task_idx].context_saved=1;
+	}
 
 	set_ds(d3_sel);
 	set_es(d3_sel);
@@ -315,18 +316,7 @@ void config() {
     set_gs(d3_sel);
 	TSS.s0.esp = tasks[0].interrupt_stack;
 	set_cr3((uint32_t)tasks[0].pgd);
-	asm volatile (
-	  "sti \n"
-      "push %0 \n" // ss
-      "push %1 \n" // esp pour du ring 3 !
-      "pushf   \n" // eflags
-      "push %2 \n" // cs
-      "push %3 \n" // eip
-      ::
-       "i"(d3_sel),
-       "m"(tasks[0].stack),
-       "i"(c3_sel),
-       "r"(tasks[0].function)
-      );
-	asm volatile("iret");
+	force_interrupts_on();
+
+	while(1);
 }
