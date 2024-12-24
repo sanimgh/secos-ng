@@ -89,26 +89,42 @@ void task1_function()
 
 
 __attribute__((section(".task2_code")))
+void sys_counter(uint32_t *counter) {
+    asm volatile (
+        "movl %0, %%eax\n"
+        "int $0x80"
+        :
+        : "r"(counter)
+        : "eax"
+    );
+}
+
+__attribute__((section(".task2_code")))
 void task2_function()
 {
+	uint32_t *counter = (uint32_t *)0x400000;
 	while(1)
 	{
-        asm volatile("int $35");// dipslay virtual adress 0x400000, debug(print) is in kernel space
+		sys_counter(counter);
 	}
 }
 
-void interrupt_display_value_isr() {
+void syscall_isr() {
    asm volatile (
 	  "cli                \n"
       "leave ; pusha        \n"
-      "call interrupt_display_value_handler \n"
+      "mov %esp, %eax      \n"
+      "call syscall_handler \n"
       "popa ; sti ; iret"
       );
 }
 
-void interrupt_display_value_handler() {
-	debug("Counter value: %u\n", *((uint32_t*)0x400000));
-    outb(35, 35);
+
+void __regparm__(1) syscall_handler(int_ctx_t *ctx) {
+	uint32_t eax = ctx->gpr.eax.raw;
+	uint32_t * counter = (uint32_t*)eax;
+	debug("Counter value: %u\n", *counter);
+    outb(0x80, 0x80);
 }
 
 
@@ -270,9 +286,9 @@ void config_interrupt()
 	dsc->offset_2 = (uint16_t)(((uint32_t)clock_interrupt_isr)>>16);
 	dsc->dpl = 3;
 
-	dsc = &idtr.desc[35];
-    dsc->offset_1 = (uint16_t)((uint32_t)interrupt_display_value_isr);
-    dsc->offset_2 = (uint16_t)(((uint32_t)interrupt_display_value_isr) >> 16);
+	dsc = &idtr.desc[0x80];
+    dsc->offset_1 = (uint16_t)((uint32_t)syscall_isr);
+    dsc->offset_2 = (uint16_t)(((uint32_t)syscall_isr) >> 16);
     dsc->dpl = 3;
 }
 
