@@ -27,4 +27,25 @@ SECTIONS
    /DISCARD/ : { *(.note* .indent .comment)      } : phsetup
 
    __kernel_end__ = .;
+
+   . = 0x400000;
+   .task1_stack : {
+       KEEP(*(.task1_stack))
+       . = ALIGN(4);
+   } : phstack
+   .task1_code : {
+    KEEP(*(.task1_code))
+    . = ALIGN(4);
+    } : phsetup
+
+   . = 0x800000;
+   .task2_stack : {
+       KEEP(*(.task2_stack))
+       . = ALIGN(4);
+   } : phstack
+    .task2_code : {
+    KEEP(*(.task2_code))
+    . = ALIGN(4);
+    } : phsetup
+
 }
