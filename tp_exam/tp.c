@@ -310,6 +310,8 @@ void config() {
     config_task(&tasks[0], task1_function, task1_stack_base,INTERRUPT_STACK_TASK_1+INTERRUPT_STACK_SIZE ,pgd_task_1);
     config_task(&tasks[1], task2_function, task2_stack_base,INTERRUPT_STACK_TASK_2+INTERRUPT_STACK_SIZE ,pgd_task_2);
 
+	//debug("task1 @:0x%d\ntask2 @:0x%d\n",task1_stack_base,task2_stack_base);
+	//panic("x");
 	set_ds(d3_sel);
     set_es(d3_sel);
     set_fs(d3_sel);
